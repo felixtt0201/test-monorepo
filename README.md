@@ -6,7 +6,7 @@
 pnpm install
 ```
 
-### Compile and Hot-Reload for Development
+### Run Project A
 
 ```sh
 pnpm run dev:project-a
