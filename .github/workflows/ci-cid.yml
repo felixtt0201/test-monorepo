@@ -16,7 +16,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: 18  # 確保版本與專案相符
+        node-version: v18.16.0  # 確保版本與專案相符
         cache: pnpm  # 開啟 pnpm 緩存
 
     # 安裝 pnpm 並加入 PATH
