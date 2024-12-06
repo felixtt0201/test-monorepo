@@ -1,12 +1,13 @@
-name: CI/CD Workflow for GitHub Pages
+name: CI/CD Workflow for Branch-based Deployment
 
 on:
   push:
     branches:
-      - main  # 監控 main 分支的變更
+      - project-a  # 當 project-a 分支有更新時觸發
+      - project-b  # 當 project-b 分支有更新時觸發
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,9 +17,8 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: v18.16.0  # 確保版本與專案相符
+        node-version: v18.16.0
 
-    # 安裝 pnpm 並加入 PATH
     - name: Install pnpm
       run: |
         corepack enable
@@ -27,12 +27,20 @@ jobs:
     - name: Install dependencies
       run: pnpm install
 
-    - name: Build project-a
-      working-directory: apps/project-a
-      run: pnpm run build
+    - name: Determine Project
+      id: project
+      run: echo "PROJECT=${{ github.ref_name }}" >> $GITHUB_ENV
 
-    - name: Deploy to GitHub Pages
+    - name: Build the project
+      if: ${{ github.ref_name == 'project-a' || github.ref_name == 'project-b' }}
+      run: pnpm run build
+      working-directory: apps/${{ github.ref_name }}
+
+    - name: Deploy ${{ github.ref_name }} to GitHub Pages
+      if: ${{ github.ref_name == 'project-a' || github.ref_name == 'project-b' }}
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: apps/project-a/dist  # Vite 預設輸出目錄
+        publish_dir: apps/${{ github.ref_name }}/dist
+        publish_branch: gh-pages
+        destination_dir: ${{ github.ref_name }}  # 指定不同子目錄
