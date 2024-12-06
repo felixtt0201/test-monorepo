@@ -12,5 +12,5 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-  base: '/test-monorepo/',
+  base: '/test-monorepo/project-a/',
 })
