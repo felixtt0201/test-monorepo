@@ -22,8 +22,8 @@ jobs:
     # 安裝 pnpm 並加入 PATH
     - name: Install pnpm
       run: |
-        npm install -g pnpm
-        pnpm --version  # 驗證 pnpm 是否正確安裝
+        corepack enable
+        pnpm --version
 
     - name: Install dependencies
       run: pnpm install
