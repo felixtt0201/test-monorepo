@@ -6,17 +6,28 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:project-a": "pnpm run -C apps/project-a dev",
-    "build:project-a": "pnpm run -C apps/project-a build"
+    "build:project-a": "pnpm run -C apps/project-a build",
+    "dev:portal": "pnpm run -C apps/amasiotcportal dev",
+    "build:portal": "pnpm run -C apps/amasiotcportal build",
+    "preview:portal": "pnpm run -C apps/amasiotcportal preview"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ant-design-vue": "4.x",
     "pinia": "^2.1.7",
-    "vue": "^3.4.21",
     "vue-loading-overlay": "^6.0.4",
-    "vue-router": "^4.3.0"
+    "ant-design-vue": "^4.2.3",
+    "axios": "^1.7.3",
+    "eslint-plugin-prettier": "4.0.0",
+    "pinia-plugin-persistedstate": "^3.2.1",
+    "sass": "^1.77.8",
+    "sweetalert2": "^11.12.4",
+    "vee-validate": "^4.13.2",
+    "vue": "^3.4.29",
+    "vue-i18n": "9",
+    "vue-router": "^4.3.3",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.8.0",
@@ -32,6 +43,10 @@
     "tailwindcss": "^3.4.15",
     "vite": "^5.2.8",
     "vite-plugin-vue-devtools": "^7.0.25",
-    "vitest": "^1.4.0"
+    "vitest": "^1.4.0",
+    "@playwright/test": "^1.44.1",
+    "eslint-plugin-playwright": "^1.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.5",
+    "vite-plugin-checker": "^0.7.2"
   }
 }
